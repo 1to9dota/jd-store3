@@ -3,14 +3,6 @@ Rails.application.routes.draw do
     devise_for :users
     namespace :admin do
       resources :products do
-        resources :orders do
-      member do
-        post :cancel
-        post :ship
-        post :shipped
-        post :return
-      end
-    end
      member do
        post :add_to_cart
      end
@@ -30,19 +22,15 @@ Rails.application.routes.draw do
       end
       resources :cart_items
 
-      resources :orders do
-     member do
-       post :pay_with_alipay
-       post :pay_with_wechat
-     end
-   end
+      resources :orders
       namespace :account do
-        resources :orders do
-         member do
-           post :pay_with_alipay
-           post :pay_with_wechat
-         end
-       end
+    resources :orders
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :admin do
+      resources :products
+      resources :orders
+    end
+
+
 end
