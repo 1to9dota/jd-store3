@@ -3,7 +3,14 @@ Rails.application.routes.draw do
     devise_for :users
     namespace :admin do
       resources :products do
-        resources :orders
+        resources :orders do
+      member do
+        post :cancel
+        post :ship
+        post :shipped
+        post :return
+      end
+    end
      member do
        post :add_to_cart
      end
