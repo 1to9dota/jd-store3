@@ -4,4 +4,9 @@ class Account::OrdersController < ApplicationController
    def index
      @orders = current_user.orders.order("id DESC")
    end
+   before_action :authenticate_user!
+
+   def index
+     @orders = current_user.orders
+   end
 end
